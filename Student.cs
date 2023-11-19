@@ -55,6 +55,10 @@ namespace TafeSAEnrolment
             return this.StudentId == ((Student)other).StudentId;
 
         }
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Student);
+        }
 
     }
 }

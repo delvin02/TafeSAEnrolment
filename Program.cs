@@ -85,43 +85,39 @@ namespace TafeSAEnrolment
 
             //Array.Sort(students);
 
-            Student searchStudent = new Student(3, "Bob Johnson", "bob@example.com", "555-555-5555", "Business", DateTime.Now);
+            //Student searchStudent = new Student(3, "Bob Johnson", "bob@example.com", "555-555-5555", "Business", DateTime.Now);
 
-            Utility.QuickSortAscending(students);
+            //Utility.QuickSortAscending(students);
 
-            int index = Utility.BinarySearch(students, searchStudent);
+            //int index = Utility.BinarySearch(students, searchStudent);
 
-            if (index != -1)
-            {
-                Console.WriteLine("Student found at index:" + index);
-            }
-            else
-            {
-                Console.WriteLine("Student not found!");
-            }
-
-            //string[] words = new string[]
+            //if (index != -1)
             //{
-            //"apple", "banana", "cherry", "date", "fig", "grape"
-            //};
-
-            //Array.Sort(words);
-
-            //string targetWord = "date";
-
-            //int wordsFoundIndex = Utility.LinearSearch(words, targetWord);
-
-            //// Output the result
-            //if (wordsFoundIndex != -1)
-            //{
-            //    Console.WriteLine($"'{targetWord}' found at index: {wordsFoundIndex}");
+            //    Console.WriteLine("Student found at index:" + index);
             //}
             //else
             //{
-            //    Console.WriteLine($"'{targetWord}' not found");
+            //    Console.WriteLine("Student not found!");
             //}
 
+            DoubleLinkedList<Student> studentList = new DoubleLinkedList<Student>();
+            foreach (Student student in students)
+            {
+                studentList.Append(student);
+            }
 
+            Student studentToFind = new Student(1, null, null, null, null, default);
+            Node<Student> foundNode = studentList.Find(studentToFind);
+
+            if (foundNode != null)
+            {
+                Student foundStudent = foundNode.Value;
+                Console.WriteLine("Found student: " + foundStudent.Name);
+            }
+            else
+            {
+                Console.WriteLine("Student not found.");
+            }
 
 
             Console.ReadKey();
