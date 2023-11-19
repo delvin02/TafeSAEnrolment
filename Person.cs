@@ -6,9 +6,22 @@ using System.Threading.Tasks;
 
 namespace TafeSAEnrolment
 {
-    internal class Person
+    public class Person
     {
-        public String Name { get; set; }
+        public string Name { get; set; }
         public string Email { get; set; }
+        public string TelNum { get; set; }
+
+        public Person(string name, string email, string telNum)
+        {
+            Name = name;
+            Email = email;
+            TelNum = telNum;
+        }
+
+        public override string ToString()
+        {
+            return $"Name: {Name}\nEmail: {Email}\nTelephone Number: {TelNum}";
+        }
     }
 }
