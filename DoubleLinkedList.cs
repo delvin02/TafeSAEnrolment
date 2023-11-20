@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.Linq;
@@ -7,127 +8,236 @@ using System.Threading.Tasks;
 
 namespace TafeSAEnrolment
 {
-    public class Node<T>
+
+    public class DoubleLinkedList<T> : ICollection<T>
     {
-        public Node(T value)
+        public DoublyLinkedListNode<T> Head
         {
-            Value = value;
-            Next = null;
-            Previous = null;
+            get;
+            private set;
         }
 
-        public T Value { get; set; }
-        public Node<T> Next { get; set; }
-        public Node<T> Previous { get; set; }
-
-
-    }
-
-    public class DoubleLinkedList<T> 
-    {
-        private Node<T> head;
-
-        public DoubleLinkedList()
+        public DoublyLinkedListNode<T> Tail
         {
-            head = null;
+            get;
+            private set;
         }
 
-        public void Append(T data)
-        {
-            Node<T> newNode = new Node<T>(data);
+        public int Count { get; private set; }
 
-            if (head == null)
+        public bool IsReadOnly { get; private set; }
+
+        public void Add(T value)
+        {
+            AddFirst(value);
+        }
+        public void AddFirst(T value)
+        {
+            AddFirst(new DoublyLinkedListNode<T>(value));
+        }
+        public void AddFirst(DoublyLinkedListNode<T> node)
+        {
+            DoublyLinkedListNode<T> tmp = Head;
+            Head = node;
+            Head.Next = tmp;
+
+            if (Count == 1)
             {
-                head = newNode;
-            } else
+                tmp.Previous = Head;
+            }
+            Count++;
+        }
+
+        public void AddLast(T value)
+        {
+            AddLast(new DoublyLinkedListNode<T>(value));
+        }
+
+        public void AddLast(DoublyLinkedListNode<T> node)
+        {
+
+            // if linked list is blank
+            if (Count == 0)
             {
-                Node<T> current = head;
-                while (current.Next != null)
+                Head = node;
+            }
+            else
+            {
+                Tail.Next = node;
+            }
+            Tail = node;
+            Count++;
+        }
+
+        public void RemoveFist(T value)
+        {
+            RemoveFirst(new DoublyLinkedListNode<T>(value));
+        }
+
+        public void RemoveFirst(DoublyLinkedListNode<T> node)
+        {
+            if (Count != 0)
+            {
+                Head = Head.Next;
+
+                Count--;
+
+                if (Count == 0)
                 {
-                    // keep going until the end
-                    current = current.Next;
+                    Tail = null;
                 }
-
-                current.Next = newNode;
-                newNode.Previous = current;
-
             }
         }
 
-        // head
-        public void Prepend(T data)
+        public void RemoveLast()
         {
-            Node<T> newNode = new Node<T>(data);
-
-            if (head != null)
+            if (Count < 1)
             {
-                head.Previous = newNode;
-            }
-            head = newNode;
-        }
-
-        public void InsertAt(int position, T data)
-        {
-            if (position == 0)
-            {
-                Prepend(data);
                 return;
             }
-            
-            Node<T> newNode = new Node<T>(data);
-            Node<T> current = head;
+
+            if (Count == 1)
+            {
+                Head = null;
+                Tail = null;
+            }
+
+            Tail = Tail.Previous;
+            Tail.Next = null;
+            Count--;
+
+        }
+
+        public void RemoveLast(T value)
+        {
+            RemoveLast(new DoublyLinkedListNode<T>(value));
+        }
+
+        public void RemoveLast(DoublyLinkedListNode<T> node)
+        {
+            if (Count == 1)
+            {
+                Head = null;
+                Tail = null;
+            }
+
+            if (Count != 0)
+            {
+
+                DoublyLinkedListNode<T> current = Head;
+                int index = 0;
+                while (current != null && index < Count -1)
+                {
+                    current = current.Next;
+                    index++;
+                }
+
+                current.Next = null;
+                Tail = current;
+            }
+            Count--;
+        }
+        public bool Contains(T item)
+        {
+            DoublyLinkedListNode<T> current = Head;
+
+            while (current != null)
+            {
+                if (current.Value.Equals(item))
+                    return true;
+                current = current.Next;
+            }
+            return false;
+        }
+
+        public void CopyTo(T[] array, int arrayIndex)
+        {
+            DoublyLinkedListNode<T> current = Head;
+            while (current != null)
+            {
+                array[arrayIndex++] = current.Value;
+                current = current.Next;
+            }
+        }
+
+        public void InsertAt(int position, T value)
+        {
+            if (position < 0 || position > Count)
+            {
+                throw new ArgumentOutOfRangeException(nameof(position));
+            }
+
+            if (position == 0)
+            {
+                AddFirst(value);
+                return;
+            }
+
+            if (position == Count)
+            {
+                AddLast(value);
+                return;
+            }
+
+            DoublyLinkedListNode<T> newNode = new DoublyLinkedListNode<T>(value);
+            DoublyLinkedListNode<T> current = Head;
             int index = 0;
 
-            while (current.Next != null && index < position - 1)
+            while (current != null && index < position - 1)
             {
                 current = current.Next;
                 index++;
             }
 
-            if (current == null) return;
-
-
+            // to avoid losting track the next node, we first assign
             newNode.Next = current.Next;
-            
-            if (current.Next != null)
-            {
-                current.Next.Previous = newNode.Next;
-            }
+            current.Next.Previous = newNode;
+
+            // once we assign the newNode, the chain is linked, 
             current.Next = newNode;
             newNode.Previous = current;
-
         }
 
-        public void Delete(T data)
+        public void DeleteAt(int position)
         {
-            Node<T> current = head;
+            if (position < 0 || position > Count)
+            {
+                throw new ArgumentOutOfRangeException(nameof(position));
+            }
 
-            while (current != null && !current.Value.Equals(data))
+            // Remove First
+            if (position == Count)
+            {
+                //RemoveFirst(position);
+                return;
+            }
+
+            // Remove Last
+            if (position == Count)
+            {
+                //RemoveLast(position);
+                return;
+            }
+            DoublyLinkedListNode<T> current = Head;
+            int index = 0;
+
+            while (current != null && index < position - 1)
             {
                 current = current.Next;
+                index++;
             }
 
-            // not found
-            if (current == null) return;
+            // to avoid losting track the next node, we first assign
+            current.Next = current.Next.Next;
+            current.Next.Previous = current;
+            Count--;
 
-            if (current.Previous != null)
-            {
-                current.Previous.Next = current.Next;
-            }
-            else
-            {
-                head = current.Next;
-            }
-
-            if (current.Next != null)
-            {
-                current.Next.Previous = current.Previous;
-            }
         }
 
         public void Traverse(Action<T> action)
         {
-            Node<T> current = head;
+            DoublyLinkedListNode<T> current = Head;
+
             while (current != null)
             {
                 action(current.Value);
@@ -135,20 +245,50 @@ namespace TafeSAEnrolment
             }
         }
 
-        public Node<T> Find(T data)
+        public DoublyLinkedListNode<T> Find(T value)
         {
-            if (head == null)
+            if (Count == 0)
                 return null;
 
-            Node<T> current = head;
-
+            DoublyLinkedListNode<T> current = Head;
             while (current != null)
             {
-                if (current.Value.Equals(data))
+                if (current.Value.Equals(value))
                     return current;
                 current = current.Next;
             }
             return null;
+        }
+
+        public override string ToString()
+        {
+            StringBuilder builder = new StringBuilder();
+            DoublyLinkedListNode<T> current = Head;
+
+            while (current != null)
+            {
+                builder.Append(current.Value.ToString());
+                builder.Append(" <-> ");
+                current = current.Next;
+            }
+            return builder.ToString();
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            DoublyLinkedListNode<T> current = Head;
+
+            while (current != null)
+            {
+                // stateful return
+                yield return current.Value;
+                current = current.Next;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
 
     }
