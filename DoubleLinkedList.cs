@@ -40,8 +40,11 @@ namespace TafeSAEnrolment
             DoublyLinkedListNode<T> tmp = Head;
             Head = node;
             Head.Next = tmp;
-
-            if (Count == 1)
+            if (Count == 0)
+            {
+                Tail = Head;
+            }
+            else 
             {
                 tmp.Previous = Head;
             }
@@ -64,6 +67,7 @@ namespace TafeSAEnrolment
             else
             {
                 Tail.Next = node;
+                node.Previous = Tail;
             }
             Tail = node;
             Count++;
@@ -80,6 +84,10 @@ namespace TafeSAEnrolment
             {
                 Head = Head.Next;
 
+                if (Head != null)
+                {
+                    Head.Previous = null;
+                }
                 Count--;
 
                 if (Count == 0)
@@ -101,9 +109,11 @@ namespace TafeSAEnrolment
                 Head = null;
                 Tail = null;
             }
-
-            Tail = Tail.Previous;
-            Tail.Next = null;
+            else
+            {
+                Tail = Tail.Previous;
+                Tail.Next = null;
+            }
             Count--;
 
         }
@@ -198,6 +208,35 @@ namespace TafeSAEnrolment
             newNode.Previous = current;
         }
 
+        public bool Remove(T value)
+        {
+            if (Count == 0)
+                return false;
+
+            DoublyLinkedListNode<T> current = Head;
+
+            while (current != null)
+            {
+                if (current.Value.Equals(value))
+                {
+                    if (current.Next == Tail)
+                    {
+                        RemoveLast();
+                    }
+                    else
+                    {
+                        current.Next = current.Next.Next;
+                        current.Next.Previous = current;
+                        Count--;
+                    }
+                    
+                    return true;
+                }
+                current = current.Next;
+            }
+            return false;
+        }
+
         public void DeleteAt(int position)
         {
             if (position < 0 || position > Count)
@@ -258,6 +297,13 @@ namespace TafeSAEnrolment
                 current = current.Next;
             }
             return null;
+        }
+
+        public void Clear()
+        {
+            Head = null;
+            Tail = null;
+            Count = 0;
         }
 
         public override string ToString()
