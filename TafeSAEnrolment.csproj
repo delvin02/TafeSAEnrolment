@@ -43,8 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DoubleLinkedList.cs" />
-    <Compile Include="DoublyLinkedListNode.cs" />
+    <Compile Include="Address.cs" />
+    <Compile Include="BinaryTree\BinaryTree.cs" />
+    <Compile Include="BinaryTree\TreeNode.cs" />
+    <Compile Include="Course.cs" />
+    <Compile Include="DoublyLinkedList\DoubleLinkedList.cs" />
+    <Compile Include="DoublyLinkedList\DoublyLinkedListNode.cs" />
+    <Compile Include="Enrollment.cs" />
+    <Compile Include="LinkedList\LinkedList.cs" />
+    <Compile Include="LinkedList\LinkedListNode.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Program.cs" />

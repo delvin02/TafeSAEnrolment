@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TafeSAEnrolment
+namespace TafeSAEnrolment.DoublyLinkedList
 {
     public class DoublyLinkedListNode<T>
     {

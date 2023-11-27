@@ -12,13 +12,15 @@ namespace TafeSAEnrolment
         public int StudentId { get; set; }
         public string Program { get; set; }
         public DateTime DateRegistered { get; set; }
+        private List<Enrollment> Enrollments { get; set; }
 
 
-        public Student(int StudentId, string Name, string Email, string TelNum, string Program, DateTime DateRegistered) : base (Name, Email, TelNum)
+        public Student(int StudentId, string Name, string Email, string TelNum, string Program, DateTime DateRegistered) : base(Name, Email, TelNum)
         {
             this.StudentId = StudentId;
-            this. Program = Program;
+            this.Program = Program;
             this.DateRegistered = DateRegistered;
+            this.Enrollments = new List<Enrollment>();
         }
         public override int GetHashCode()
         {
@@ -34,6 +36,10 @@ namespace TafeSAEnrolment
             return this.StudentId.CompareTo(other.StudentId);
         }
 
+        public void AddEnrollment(Enrollment enrollment)
+        {
+            Enrollments.Add(enrollment);
+        }
         public static bool operator ==(Student x, Student y)
         {
             return x.StudentId == y?.StudentId;

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TafeSAEnrolment
+namespace TafeSAEnrolment.DoublyLinkedList
 {
 
     public class DoubleLinkedList<T> : ICollection<T>
