@@ -16,15 +16,17 @@ namespace TafeSAEnrolment
 
             List<Student> students = new List<Student>
             {
-            new Student(3, "Alice Smith", "alice@example.com", "987-654-3210", "Engineering", DateTime.Now),
-            new Student(1, "John Doe", "john@example.com", "123-456-7890", "Computer Science", DateTime.Now),
-            new Student(2, "Bob Johnson", "bob@example.com", "555-555-5555", "Business", DateTime.Now),
-            new Student(6, "Vin", "cryayon@example.com", "123-423-123", "Mareting", DateTime.Now),
-            new Student(7, "Qujmn", "qujm@example.com", "65132-231-222", "Finance", DateTime.Now),
-            new Student(5, "Chalice", "c@example.com", "555-555-5555", "Business", DateTime.Now),
-            new Student(4, "Encu", "e@example.com", "888-666-852", "Business", DateTime.Now)
+                new Student(4, "Encu", "e@example.com", "888-666-852", "Business", DateTime.Now),
+                new Student(3, "Alice Smith", "alice@example.com", "987-654-3210", "Engineering", DateTime.Now),
+                new Student(5, "Chalice", "c@example.com", "555-555-5555", "Business", DateTime.Now),
+                new Student(1, "John Doe", "john@example.com", "123-456-7890", "Computer Science", DateTime.Now),
+                new Student(2, "Bob Johnson", "bob@example.com", "555-555-5555", "Business", DateTime.Now),
+                new Student(6, "Vin", "cryayon@example.com", "123-423-123", "Mareting", DateTime.Now),
+                new Student(7, "Qujmn", "qujm@example.com", "65132-231-222", "Finance", DateTime.Now)
             };
-            // ============================================= Merge Sort testing ====================================================
+            // =============================================
+            // Merge Sort testing
+            // =============================================
 
             //Utility.MergeSortAscending(students);
 
@@ -159,8 +161,16 @@ namespace TafeSAEnrolment
                 studentTree.Add(student);
             }
 
-            studentTree.Remove(students[4]);
+            // studentTree.Remove(students[4]);
 
+
+            //   3
+            // /  \
+            //1     6
+            // \   / \
+            //  2  5  7
+            //    /
+            //   4
             Console.WriteLine("Traverse In-Order:");
             studentTree.TraverseInOrder(studentTree.Root);
 
