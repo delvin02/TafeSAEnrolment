@@ -22,6 +22,10 @@ namespace TafeSAEnrolment
             this.DateRegistered = DateRegistered;
             this.Enrollments = new List<Enrollment>();
         }
+        public int GetStudentId()
+        {
+            return StudentId;
+        }
         public override int GetHashCode()
         {
             return Program.GetHashCode() ^ DateRegistered.GetHashCode();
@@ -64,6 +68,14 @@ namespace TafeSAEnrolment
         public override bool Equals(object obj)
         {
             return Equals(obj as Student);
+        }
+
+        public string StudentInfo
+        {
+            get
+            {
+                return $"Name: {Name}Email: {Email}TelNum: {TelNum}";
+            }
         }
 
     }

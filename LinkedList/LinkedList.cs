@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace TafeSAEnrolment.LinkedList
 {
+    /// <summary>
+    /// Represents a singly linked list.
+    /// </summary>
+    /// <typeparam name="T">The type of elements in the linked list.</typeparam>
     public class LinkedList<T> : ICollection<T>
     {
         public LinkedListNode<T> Head

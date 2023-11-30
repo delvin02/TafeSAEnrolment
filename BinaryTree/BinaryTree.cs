@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TafeSAEnrolment.BinaryTree
 {
-    class BinaryTree<T> where T : IComparable<T>
+    public class BinaryTree<T> where T : IComparable<T>
     {
         public TreeNode<T> Root { get; private set; }
 
@@ -50,12 +50,12 @@ namespace TafeSAEnrolment.BinaryTree
             return true;
         }
 
-        public TreeNode<T> Find(int value)
+        public TreeNode<T> Find(T value)
         {
             return this.Find(value, Root);
         }
 
-        public TreeNode<T> Find(int value, TreeNode<T> parent)
+        public TreeNode<T> Find(T value, TreeNode<T> parent)
         {
             if (parent != null)
             {

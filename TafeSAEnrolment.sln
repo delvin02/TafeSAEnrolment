@@ -5,6 +5,8 @@ VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TafeSAEnrolment", "TafeSAEnrolment.csproj", "{BD56347D-0B73-4872-8966-B80354023148}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TafeSAEnrolmentTest", "..\TafeSAEnrolmentTest\TafeSAEnrolmentTest.csproj", "{813F5782-6695-4256-9830-74E2172F4AC8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{BD56347D-0B73-4872-8966-B80354023148}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD56347D-0B73-4872-8966-B80354023148}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD56347D-0B73-4872-8966-B80354023148}.Release|Any CPU.Build.0 = Release|Any CPU
+		{813F5782-6695-4256-9830-74E2172F4AC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{813F5782-6695-4256-9830-74E2172F4AC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{813F5782-6695-4256-9830-74E2172F4AC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{813F5782-6695-4256-9830-74E2172F4AC8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

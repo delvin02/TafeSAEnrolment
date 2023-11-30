@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TafeSAEnrolment.BinaryTree
 {
-    class TreeNode<T> where T : IComparable<T>
+    public class TreeNode<T> where T : IComparable<T>
     {
         public TreeNode<T> LeftNode { get; set; }
         public TreeNode<T> RightNode { get; set; }

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TafeSAEnrolment.BinaryTree;
 using TafeSAEnrolment.LinkedList;
-
+using System.Text;
 namespace TafeSAEnrolment
 {
     internal class Program
@@ -16,13 +16,13 @@ namespace TafeSAEnrolment
 
             List<Student> students = new List<Student>
             {
-                new Student(4, "Encu", "e@example.com", "888-666-852", "Business", DateTime.Now),
-                new Student(3, "Alice Smith", "alice@example.com", "987-654-3210", "Engineering", DateTime.Now),
-                new Student(5, "Chalice", "c@example.com", "555-555-5555", "Business", DateTime.Now),
-                new Student(1, "John Doe", "john@example.com", "123-456-7890", "Computer Science", DateTime.Now),
-                new Student(2, "Bob Johnson", "bob@example.com", "555-555-5555", "Business", DateTime.Now),
-                new Student(6, "Vin", "cryayon@example.com", "123-423-123", "Mareting", DateTime.Now),
-                new Student(7, "Qujmn", "qujm@example.com", "65132-231-222", "Finance", DateTime.Now)
+                new Student(4, "Don", "don@example.com", "888-666-852", "Business", DateTime.Now),
+                new Student(2, "Bob", "bob@example.com", "987-654-3210", "Engineering", DateTime.Now),
+                new Student(6, "Falcon", "falcon@example.com", "555-555-5555", "Business", DateTime.Now),
+                new Student(1, "Alice", "alice@example.com", "123-456-7890", "Computer Science", DateTime.Now),
+                new Student(3, "Carson", "carson@example.com", "555-555-5555", "Business", DateTime.Now),
+                new Student(5, "Eason", "eason@example.com", "123-423-123", "Mareting", DateTime.Now),
+                new Student(7, "Gret", "gre@example.com", "65132-231-222", "Finance", DateTime.Now)
             };
             // =============================================
             // Merge Sort testing
@@ -133,14 +133,14 @@ namespace TafeSAEnrolment
             // Linked List
             // =============================================
 
-            //var linkedList = new TafeSAEnrolment.LinkedList.LinkedList<Student>();
+            var linkedList = new TafeSAEnrolment.LinkedList.LinkedList<Student>();
 
-            //// Add students to the LinkedList
-            //foreach (var student in students)
-            //{
-            //    linkedList.AddLast(student);
-            //}
-            //linkedList.RemoveFirst();
+            // Add students to the LinkedList
+            foreach (var student in students)
+            {
+                linkedList.AddLast(student);
+            }
+            linkedList.RemoveFirst();
             //linkedList.RemoveLast();
 
             //// Display LinkedList after removal
@@ -153,6 +153,11 @@ namespace TafeSAEnrolment
             // =============================================
             // Binary Tree
             // =============================================
+            TestBinaryTree(students);
+        }
+
+        static void TestBinaryTree(List<Student> students)
+        {
 
             BinaryTree<Student> studentTree = new BinaryTree<Student>();
 
@@ -161,16 +166,8 @@ namespace TafeSAEnrolment
                 studentTree.Add(student);
             }
 
-            // studentTree.Remove(students[4]);
 
 
-            //   3
-            // /  \
-            //1     6
-            // \   / \
-            //  2  5  7
-            //    /
-            //   4
             Console.WriteLine("Traverse In-Order:");
             studentTree.TraverseInOrder(studentTree.Root);
 
@@ -179,6 +176,8 @@ namespace TafeSAEnrolment
 
             Console.WriteLine("\nTraverse Post-Order:");
             studentTree.TraversePostOrder(studentTree.Root);
+
+
         }
     }
 }
