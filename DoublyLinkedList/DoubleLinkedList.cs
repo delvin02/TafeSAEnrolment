@@ -27,14 +27,19 @@ namespace TafeSAEnrolment.DoublyLinkedList
 
         public bool IsReadOnly { get; private set; }
 
+        // Add a new node to the doubly linked list
         public void Add(T value)
         {
             AddFirst(value);
         }
+
+        // Add a new node to the beginning of the doubly linked list
         public void AddFirst(T value)
         {
             AddFirst(new DoublyLinkedListNode<T>(value));
         }
+
+        // Add a new node to the beginning of the doubly linked list
         public void AddFirst(DoublyLinkedListNode<T> node)
         {
             DoublyLinkedListNode<T> tmp = Head;
@@ -51,11 +56,13 @@ namespace TafeSAEnrolment.DoublyLinkedList
             Count++;
         }
 
+        // Add a new node to the end of the doubly linked list
         public void AddLast(T value)
         {
             AddLast(new DoublyLinkedListNode<T>(value));
         }
 
+        // Add a new node to the end of the doubly linked list
         public void AddLast(DoublyLinkedListNode<T> node)
         {
 
@@ -73,7 +80,8 @@ namespace TafeSAEnrolment.DoublyLinkedList
             Count++;
         }
 
-        public void RemoveFist(T value)
+        // Remove the first node from the doubly linked list
+        public void RemoveFirst(T value)
         {
             RemoveFirst(new DoublyLinkedListNode<T>(value));
         }
@@ -96,7 +104,7 @@ namespace TafeSAEnrolment.DoublyLinkedList
                 }
             }
         }
-
+        // Remove the last node from the doubly linked list
         public void RemoveLast()
         {
             if (Count < 1)
@@ -117,6 +125,7 @@ namespace TafeSAEnrolment.DoublyLinkedList
             Count--;
 
         }
+        // Remove the last node from the doubly linked list
 
         public void RemoveLast(T value)
         {
@@ -147,6 +156,8 @@ namespace TafeSAEnrolment.DoublyLinkedList
             }
             Count--;
         }
+
+        // Check if the doubly linked list contains a specific value
         public bool Contains(T item)
         {
             DoublyLinkedListNode<T> current = Head;
@@ -160,6 +171,7 @@ namespace TafeSAEnrolment.DoublyLinkedList
             return false;
         }
 
+        // Copy the elements of the doubly linked list to an array
         public void CopyTo(T[] array, int arrayIndex)
         {
             DoublyLinkedListNode<T> current = Head;
@@ -170,6 +182,7 @@ namespace TafeSAEnrolment.DoublyLinkedList
             }
         }
 
+        // Insert a new node at a specific position in the doubly linked list
         public void InsertAt(int position, T value)
         {
             if (position < 0 || position > Count)
@@ -177,12 +190,14 @@ namespace TafeSAEnrolment.DoublyLinkedList
                 throw new ArgumentOutOfRangeException(nameof(position));
             }
 
+            // add first if the linked list has nothing
             if (position == 0)
             {
                 AddFirst(value);
                 return;
             }
 
+            // add last if the linked list size is equal to the position
             if (position == Count)
             {
                 AddLast(value);
@@ -208,6 +223,7 @@ namespace TafeSAEnrolment.DoublyLinkedList
             newNode.Previous = current;
         }
 
+        // Remove a specific value from the doubly linked list
         public bool Remove(T value)
         {
             if (Count == 0)
@@ -237,6 +253,7 @@ namespace TafeSAEnrolment.DoublyLinkedList
             return false;
         }
 
+        // Delete the node at a specific position in the doubly linked list
         public void DeleteAt(int position)
         {
             if (position < 0 || position > Count)
@@ -284,6 +301,7 @@ namespace TafeSAEnrolment.DoublyLinkedList
             }
         }
 
+        // Find the node with a specific value in the doubly linked list
         public DoublyLinkedListNode<T> Find(T value)
         {
             if (Count == 0)
@@ -299,6 +317,7 @@ namespace TafeSAEnrolment.DoublyLinkedList
             return null;
         }
 
+        // Clear the doubly linked list
         public void Clear()
         {
             Head = null;
@@ -306,6 +325,7 @@ namespace TafeSAEnrolment.DoublyLinkedList
             Count = 0;
         }
 
+        // Return a string representation of the doubly linked list
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();

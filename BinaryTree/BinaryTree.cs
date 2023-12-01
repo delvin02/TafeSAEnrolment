@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TafeSAEnrolment.BinaryTree
 {
+    // Binary tree implementation
     public class BinaryTree<T> where T : IComparable<T>
     {
         public TreeNode<T> Root { get; private set; }
@@ -14,10 +15,12 @@ namespace TafeSAEnrolment.BinaryTree
         {
             TreeNode<T> before = null, after = this.Root;
 
-            // keep looping down the trees
+            // keep looping down the tree until a suitable position is found
             while (after != null)
             {
                 before = after;
+
+                // if the value is smaller, go to the left node. otherwise right node.
                 if (value.CompareTo(after.Data) < 0)
                 {
                     after = after.LeftNode;
@@ -35,12 +38,13 @@ namespace TafeSAEnrolment.BinaryTree
             TreeNode<T> newNode = new TreeNode<T>(value);
             newNode.Data = value;
 
+
             // Empty
             if (this.Root == null)
                 this.Root = newNode;
             else
             {
-                // if lesser, then go to the left node
+                // Assign the new node to the left or right based on the comparison result
                 if (value.CompareTo(before.Data) < 0)
                     before.LeftNode = newNode;
                 else
@@ -50,11 +54,13 @@ namespace TafeSAEnrolment.BinaryTree
             return true;
         }
 
+        // Find a node with the specified value in the binary tree
         public TreeNode<T> Find(T value)
         {
             return this.Find(value, Root);
         }
 
+        // Recursive helper method to find a node with the specified value
         public TreeNode<T> Find(T value, TreeNode<T> parent)
         {
             if (parent != null)
@@ -73,11 +79,13 @@ namespace TafeSAEnrolment.BinaryTree
             return null;
         }
 
+        // Remove a node with specified value in the binary tree
         public void Remove(T value)
         {
             this.Root = Remove(this.Root, value);
         }
 
+        // Recursive helper method to remove a node with specified value
         public TreeNode<T> Remove(TreeNode<T> parent, T key)
         {
             if (parent == null) return parent;
@@ -104,6 +112,7 @@ namespace TafeSAEnrolment.BinaryTree
             return parent;
         }
 
+        // Helper method to find the minimum value in a subtree
         private T MinValue(TreeNode<T> node)
         {
             T minv = node.Data;
@@ -116,16 +125,17 @@ namespace TafeSAEnrolment.BinaryTree
             return minv;
         }
 
+        // Traverse the tree in pre-order and print the node values
         public void TraversePreOrder(TreeNode<T> parent)
         {
             if (parent != null)
             {
                 Console.WriteLine(parent.Data + " ");
 
-                // left subtree
+                // traverse left subtree
                 TraversePreOrder(parent.LeftNode);
 
-                // right subtree
+                // traverse right subtree
                 TraversePreOrder(parent.RightNode);
             }
         }
@@ -134,8 +144,12 @@ namespace TafeSAEnrolment.BinaryTree
         {
             if (parent != null)
             {
+                // Traverse the left subtree
                 TraverseInOrder(parent.LeftNode);
+
                 Console.WriteLine(parent.Data + " ");
+
+                // Traverse the right subtree
                 TraverseInOrder(parent.RightNode);
             }
         }
@@ -144,7 +158,10 @@ namespace TafeSAEnrolment.BinaryTree
         {
             if (parent != null)
             {
+                // Traverse the left subtree
                 TraversePostOrder(parent.LeftNode);
+
+                // Traverse the right subtree
                 TraversePostOrder(parent.RightNode);
 
                 Console.WriteLine(parent.Data + " ");

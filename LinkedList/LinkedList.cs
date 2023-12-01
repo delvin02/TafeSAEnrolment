@@ -127,6 +127,7 @@ namespace TafeSAEnrolment.LinkedList
 
         public bool Contains(T item)
         {
+            // check if the item exists in the linked list
             LinkedListNode<T> current = Head;
             while (current != null)
             {
@@ -154,8 +155,10 @@ namespace TafeSAEnrolment.LinkedList
             LinkedListNode<T> previous = null;
             LinkedListNode<T> current = Head;
 
+            // if not null
             while (current != null)
             {
+                // check if its equal to the item we want to remove
                 if (current.Value.Equals(item))
                 {
                     // process if found
@@ -172,6 +175,7 @@ namespace TafeSAEnrolment.LinkedList
                     }
                     else
                     {
+                        // if the item happens to the first value in the linked list
                         RemoveFirst();
                     }
 
@@ -187,7 +191,7 @@ namespace TafeSAEnrolment.LinkedList
         public IEnumerator<T> GetEnumerator()
         {
             LinkedListNode<T> current = Head;
-
+            // loop
             while (current != null)
             {
                 yield return current.Value;
