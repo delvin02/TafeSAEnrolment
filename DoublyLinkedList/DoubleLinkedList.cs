@@ -73,7 +73,7 @@ namespace TafeSAEnrolment.DoublyLinkedList
             Count++;
         }
 
-        public void RemoveFist(T value)
+        public void RemoveFirst(T value)
         {
             RemoveFirst(new DoublyLinkedListNode<T>(value));
         }

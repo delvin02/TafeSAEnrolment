@@ -17,6 +17,31 @@ namespace TafeSAEnrolment
         // ====================================================================================================================================================
         // Sort
         // ====================================================================================================================================================
+        public static void BubbleSortAscending<T>(List<T> list) where T : IComparable<T>
+        {
+            try
+            {
+                BubbleSort(list,(x, y) => x.CompareTo(y));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred during MergeSortAscending: {ex.Message}");
+            }
+        }
+
+        public static void BubbleSortDescending<T>(List<T> list) where T : IComparable<T>
+        {
+            try
+            {
+                BubbleSort(list, (x, y) => y.CompareTo(x));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred during MergeSortDescending: {ex.Message}");
+            }
+
+        }
+
         public static void MergeSortAscending<T>(List<T> list) where T : IComparable<T>
         {
             try
@@ -216,6 +241,29 @@ namespace TafeSAEnrolment
             }
             Swap(list, i + 1, high);
             return i + 1;
+        }
+
+
+        public static void BubbleSort<T>(List<T> list, Comparison<T> comparison) where T : IComparable<T>
+        {
+            int n = list.Count;
+            bool swapped;
+
+            do
+            {
+                swapped = false;
+
+                for (int i = 1; i < n; i++)
+                {
+                    if (comparison(list[i - 1], list[i]) > 0)
+                    {
+                        // Swap elements
+                        Swap(list, i, i - 1);
+
+                        swapped = true;
+                    }
+                }
+            } while (swapped);
         }
 
 
