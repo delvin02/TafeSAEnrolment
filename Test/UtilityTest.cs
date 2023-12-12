@@ -18,9 +18,11 @@ namespace TafeSAEnrolment.Test
             students = GetSampleStudents();
         }
 
+        // QuickSort Test
         [Test]
         public void LinearSearchTest_ExistingElement()
         {
+
             // Arrange
             var targetStudent = students[3]; // Student with ID 4
 
@@ -34,6 +36,7 @@ namespace TafeSAEnrolment.Test
         [Test]
         public void LinearSearchTest_NonExistingElement()
         {
+
             // Arrange
             var targetStudent = new Student(100, "John", "john@example.com", "999-888-7777", "Physics", DateTime.Now);
 
@@ -60,6 +63,7 @@ namespace TafeSAEnrolment.Test
             Assert.AreEqual(3, index, "BinarySearch should return the correct index of an existing element");
         }
 
+        // MergeSort Test
         [Test]
         public void BinarySearchTest_NonExistingElement()
         {
@@ -74,6 +78,7 @@ namespace TafeSAEnrolment.Test
             // Assert
             Assert.AreEqual(-1, index, "BinarySearch should return -1 for a non-existing element");
         }
+
 
         [Test]
         public void BubbleSort_SortsStudentsByNameAscending()
@@ -113,6 +118,7 @@ namespace TafeSAEnrolment.Test
         [Test]
         public void QuicksortAscendingTest()
         {
+            students.Sort();
 
             // Arrange
             var expectedSortedStudents = new List<Student>(students);
@@ -129,6 +135,7 @@ namespace TafeSAEnrolment.Test
         [Test]
         public void QuicksortDescendingTest()
         {
+            students.Sort();
 
             // Arrange
             var expectedSortedStudents = new List<Student>(students);

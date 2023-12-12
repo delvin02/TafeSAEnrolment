@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using TafeSAEnrolment.BinaryTree;
 using TafeSAEnrolment.LinkedList;
 using System.Text;
+using TafeSAEnrolment.DoublyLinkedList;
+
 namespace TafeSAEnrolment
 {
     internal class Program
@@ -27,135 +29,95 @@ namespace TafeSAEnrolment
             // =============================================
             // Merge Sort testing
             // =============================================
+            Console.WriteLine("Merge Sort Ascending:");
+            Utility.MergeSortAscending(students);
+            PrintStudents(students);
 
-            //Utility.MergeSortAscending(students);
-
-
-
-            //Console.ReadKey();
-
-            //Utility.MergeSortDescending(students);
-
+            Console.WriteLine("\nMerge Sort Descending:");
+            Utility.MergeSortDescending(students);
+            PrintStudents(students);
 
             // ============================================= Quick Sort testing ====================================================
+            Console.WriteLine("\nQuick Sort Ascending:");
+            Utility.QuickSortAscending(students);
+            PrintStudents(students);
 
-            //Utility.QuickSortAscending(students);
-
-            //Console.ReadKey(); 
-
-            // Utility.QuickSortDescending(students);
-
-            // Quicksort test
-
-            //Student[] students = new Student[]
-            //{
-            //new Student(3, "Alice Smith", "alice@example.com", "987-654-3210", "Engineering", DateTime.Now),
-            //new Student(1, "John Doe", "john@example.com", "123-456-7890", "Computer Science", DateTime.Now),
-            //new Student(2, "Bob Johnson", "bob@example.com", "555-555-5555", "Business", DateTime.Now),
-            //new Student(5, "Chalice", "c@example.com", "555-555-5555", "Business", DateTime.Now),
-            //new Student(4, "Encu", "e@example.com", "555-555-5555", "Business", DateTime.Now)
-
-            //};
-
-            //// Apply QuickSort to the array
-            //Utility.QuickSort(students);
-
-            //// Print the sorted array
-            //Console.WriteLine("Sorted students by StudentId:");
-            //foreach (var student in students)
-            //{
-            //    Console.WriteLine($"StudentId: {student.StudentId}, Name: {student.Name}");
-            //}
-
-
-            //Student searchStudent = new Student(3, "Bob Johnson", "bob@example.com", "555-555-5555", "Business", DateTime.Now);
-
-            //int index = Utility.LinearSearch(students, searchStudent);
-
-            //if (index != -1)
-            //{
-            //    Console.WriteLine("Student found at index:" + index);
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Student not found!");
-            //}
-
-            // Binary search Test
-            //Student[] students = new Student[]
-            //{
-            //    new Student(3, "Bob Johnson", "bob@example.com", "555-555-5555", "Business", DateTime.Now),
-            //    new Student(1, "John Doe", "john@example.com", "123-456-7890", "Computer Science", DateTime.Now),
-            //    new Student(2, "Alice Smith", "alice@example.com", "987-654-3210", "Engineering", DateTime.Now)
-            // };
-
-            //Array.Sort(students);
-
-            //Student searchStudent = new Student(3, "Bob Johnson", "bob@example.com", "555-555-5555", "Business", DateTime.Now);
-
-            //Utility.QuickSortAscending(students);
-
-            //int index = Utility.BinarySearch(students, searchStudent);
-
-            //if (index != -1)
-            //{
-            //    Console.WriteLine("Student found at index:" + index);
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Student not found!");
-            //}
+            Console.WriteLine("\nQuick Sort Descending:");
+            Utility.QuickSortDescending(students);
+            PrintStudents(students);
 
             // =============================================
-            // Double Linked List
+            // Linear Search
             // =============================================
-
-            //DoublyLinkedList.DoubleLinkedList<Student> studentList = new DoublyLinkedList.DoubleLinkedList<Student>();
-            //foreach (Student student in students)
-            //{
-            //    studentList.Append(student);
-            //}
-
-            //Student studentToFind = new Student(1, null, null, null, null, default);
-            //DoublyLinkedList.DoublyLinkedListNode<Student> foundNode = studentList.Find(studentToFind);
-
-            //if (foundNode != null)
-            //{
-            //    Student foundStudent = foundNode.Value;
-            //    Console.WriteLine("Found student: " + foundStudent.Name);
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Student not found.");
-            //}
+            Student searchStudent = new Student(3, "Bob Johnson", "bob@example.com", "555-555-5555", "Business", DateTime.Now);
+            int linearSearchIndex = Utility.LinearSearch(students, searchStudent);
+            Console.WriteLine($"\nLinear Search Result: Student found at index {linearSearchIndex}");
 
             // =============================================
-            // Linked List
+            // Binary Search
             // =============================================
+            Console.WriteLine("\nBinary Search Result:");
+            Utility.QuickSortAscending(students);
+            int binarySearchIndex = Utility.BinarySearch(students, searchStudent);
+            if (binarySearchIndex != -1)
+            {
+                Console.WriteLine($"Student found at index {binarySearchIndex}");
+            }
+            else
+            {
+                Console.WriteLine("Student not found!");
+            }
 
+            // =============================================
+            // Doubly Linked List
+            // =============================================
+            Console.WriteLine("\nDoubly Linked List:");
+            DoubleLinkedList<Student> doubleLinkedList = new DoubleLinkedList<Student>();
+            foreach (Student student in students)
+            {
+                doubleLinkedList.Add(student);
+            }
+            // Print Doubly Linked List
+            foreach (var node in doubleLinkedList)
+            {
+                Console.WriteLine($"Student ID: {node.StudentId}");
+            }
+
+            // =============================================
+            // LinkedList
+            // =============================================
+            Console.WriteLine("\nLinked List After Removal:");
             var linkedList = new TafeSAEnrolment.LinkedList.LinkedList<Student>();
-
-            // Add students to the LinkedList
             foreach (var student in students)
             {
                 linkedList.AddLast(student);
             }
             linkedList.RemoveFirst();
-            //linkedList.RemoveLast();
-
-            //// Display LinkedList after removal
-            //Console.WriteLine("\nAfter removal:");
-            //foreach (var student in linkedList)
-            //{
-            //    Console.WriteLine($"Student ID: {student.StudentId}, Name: {student.Name}, Program: {student.Program}");
-            //}
+            PrintStudents(linkedList);
 
             // =============================================
             // Binary Tree
             // =============================================
+            Console.WriteLine("\nBinary Tree In-Order Traversal:");
             TestBinaryTree(students);
+            Console.ReadKey();
         }
 
+        static void PrintStudents(IEnumerable<Student> students)
+        {
+            foreach (var student in students)
+            {
+                Console.WriteLine($"Student ID: {student.StudentId}, Name: {student.Name}, Program: {student.Program}");
+            }
+        }
+
+        static void PrintStudents(TafeSAEnrolment.LinkedList.LinkedList<Student> linkedList)
+        {
+            foreach (var student in linkedList)
+            {
+                Console.WriteLine($"Student ID: {student.StudentId}, Name: {student.Name}, Program: {student.Program}");
+            }
+        }
         static void TestBinaryTree(List<Student> students)
         {
 
